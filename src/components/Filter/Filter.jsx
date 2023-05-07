@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
 import css from './Filter.module.css'
+import PropTypes from 'prop-types';
 
 export const Filter = ({ filterList }) => {
     
@@ -19,3 +20,7 @@ export const Filter = ({ filterList }) => {
                       />
                 </label>
 }
+
+Filter.propTypes = {
+    filterList: PropTypes.func
+};
