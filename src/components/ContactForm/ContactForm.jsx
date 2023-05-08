@@ -13,6 +13,25 @@ export class ContactForm extends Component {
     NameInputId = nanoid();
     NumberInputID = nanoid();
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { name, number } = e.currentTarget;
+    
+    this.props.handleSubmitForm(name,number)
+
+    this.resetState()
+    name.value = "";
+    number.value = "";
+  };
+  
+  resetState = () => { 
+    this.setState({
+      name: '',
+      number: ''
+    })
+  }
+
+
     handleChangeInput = (e) => {
     e.preventDefault();
     const {name, value} = e.currentTarget;
@@ -24,7 +43,7 @@ export class ContactForm extends Component {
 
     render() {
         return (
-            <form onSubmit={this.props.handleSubmitForm} className={css.form__contacts}>
+            <form onSubmit={this.handleSubmit} className={css.form__contacts}>
                 <label htmlFor={this.NameInputId}>
                   <p className={css.form__text}>Name</p>
                   <input
@@ -62,5 +81,5 @@ export class ContactForm extends Component {
 };
 
 ContactForm.propTypes = {
-  handleSubmitForm: PropTypes.func,
+  handleSubmitForm: PropTypes.func.isRequired,
 };
